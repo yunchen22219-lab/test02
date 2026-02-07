@@ -1,0 +1,22 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = '我的測試網站'
+theme = 'book'
+defaultContentLanguage = "zh-tw"
+
+[languages]
+  [languages.zh-tw]
+    languageName = "繁體中文"
+    title = "測試網站"
+    weight = 1
+    contentDir = "content/zh-tw"
+    
+  [languages.en]
+    languageName = "English"
+    title = "Test Website"
+    weight = 2
+    contentDir = "content/en"
+
+[params]
+  BookMenuBundle = 'menu'
+  BookSection = 'docs'
