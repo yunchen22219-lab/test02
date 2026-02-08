@@ -1,0 +1,132 @@
+{{ define "main" }}
+<style>
+.book-page {
+  max-width: 1200px !important;
+  padding: 2rem;
+}
+.archive-header {
+  background: radial-gradient(circle at center, #4facfe 0%, #00f2fe 50%, #0575e6 100%);
+  padding: 3rem 2rem;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+}
+.archive-header h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin: 0;
+}
+.archive-header p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+.search-box {
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+.search-box input {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.evidence-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+.evidence-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+.evidence-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.evidence-item h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+.evidence-item p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 4.5rem;
+}
+.view-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white !important;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+.view-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+  color: white !important;
+}
+.back-home {
+  text-align: center;
+  margin: 4rem 0 2rem;
+}
+.back-home a {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+.back-home a:hover {
+  background: #e0e0e0;
+}
+</style>
+
+<div class="archive-header">
+  <h1>🏛️ OpenAI 證據庫</h1>
+  <p>揭露大型語言模型的邏輯謬誤與穩態維護機制</p>
+  <div class="search-box">
+    <input type="search" placeholder="搜尋證據...（功能開發中）">
+  </div>
+</div>
+
+<div class="evidence-cards">
+  {{ range .Pages.ByWeight }}
+  <div class="evidence-item">
+    <h3>{{ .Title }}</h3>
+    <p>
+      {{ if .Description }}
+        {{ .Description }}
+      {{ else if .Summary }}
+        {{ .Summary }}
+      {{ else }}
+        {{ .Content | plainify | truncate 120 }}
+      {{ end }}
+    </p>
+    <a href="{{ .Permalink }}" class="view-button">詳看全文</a>
+  </div>
+  {{ end }}
+</div>
+
+<div class="back-home">
+  <a href="/zh-tw/">← 回到首頁</a>
+</div>
+
+{{ end }}

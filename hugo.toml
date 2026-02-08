@@ -16,7 +16,12 @@ defaultContentLanguage = "zh-tw"
     title = "Test Website"
     weight = 2
     contentDir = "content/en"
-
-[params]
+      
+     [params]
   BookMenuBundle = 'menu'
   BookSection = 'docs'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true 
